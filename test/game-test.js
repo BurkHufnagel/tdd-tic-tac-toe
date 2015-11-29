@@ -24,6 +24,7 @@ describe('Starting the Game', () => {
 
         game.started.should.be.true;
         should.exist(game.humanPlayer);
+        should.not.exist(game.humanPlayer.name);
     });
 
     it('should contain the computer as the opponent with a default name when game starts', () => {
