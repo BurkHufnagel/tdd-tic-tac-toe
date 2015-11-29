@@ -5,8 +5,8 @@ module.exports = {
     create: create
 };
 
-function create(){
+function create(name){
     return {
-        name: null
+        name: name
     };
 }

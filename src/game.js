@@ -7,7 +7,8 @@ var game = module.exports = {
     start: start,
     started: false,
     board: board.create(),
-    humanPlayer: player.create()
+    humanPlayer: player.create(),
+    computerPlayer: player.create('player 2 (computer)')
 };
 
 function start(){

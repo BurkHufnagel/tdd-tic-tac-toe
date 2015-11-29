@@ -25,4 +25,12 @@ describe('Game Tests - Starting (initializing) the Game', () => {
         game.started.should.be.true;
         should.exist(game.humanPlayer);
     });
+
+    it('should contain the computer as the opponent with a default name when game starts', () => {
+        game.start();
+
+        game.started.should.be.true;
+        should.exist(game.computerPlayer);
+        game.computerPlayer.name.should.equal('player 2 (computer)');
+    });
 });
