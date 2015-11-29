@@ -1,2 +1,2 @@
 # tdd-tic-tac-toe
-Test Drive Creating of a Tic-tac-toe game that cannot be beat
+Test Drive creation of a Tic-tac-toe game that cannot be beat

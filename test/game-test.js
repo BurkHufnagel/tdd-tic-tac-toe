@@ -4,7 +4,7 @@ let chai = require('chai'),
     should = chai.should(),
     game = require('../src/game');
 
-describe('Game Tests - Starting (initializing) the Game', () => {
+describe('Starting the Game', () => {
 
     it('should be able to start the game', () => {
         game.start();
