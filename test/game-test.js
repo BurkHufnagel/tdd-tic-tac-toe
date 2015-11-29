@@ -19,4 +19,10 @@ describe('Game Tests - Starting (initializing) the Game', () => {
         should.exist(game.board);
     });
 
+    it('should contain a new human player without a name when game starts', () => {
+        game.start();
+
+        game.started.should.be.true;
+        should.exist(game.humanPlayer);
+    });
 });
