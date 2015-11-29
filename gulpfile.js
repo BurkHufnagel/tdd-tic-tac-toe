@@ -1,8 +1,7 @@
 'use strict';
 
 var gulp = require('gulp'),
-    mocha = require('gulp-mocha'),
-    server = require('gulp-develop-server');
+    mocha = require('gulp-mocha');
 
 var config = {
     core: {
