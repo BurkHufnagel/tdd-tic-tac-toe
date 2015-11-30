@@ -22,7 +22,7 @@ describe('Game - Initial State', () => {
 
     it('should contain the computer as the opponent with a default name', () => {
         should.exist(game.computerPlayer);
-        game.computerPlayer.name.should.equal('player 2 (computer)');
+        game.computerPlayer.should.have.deep.property('name', 'player 2 (computer)');
     });
 
     it('should have a status of not started', () => {
