@@ -17,7 +17,7 @@ describe('Game - Initial State', () => {
         game.humanPlayer = player1;
 
         should.exist(game.humanPlayer);
-        game.humanPlayer.name.should.equal(player1.name);
+        game.humanPlayer.should.have.deep.property('name', player1.name);
     });
 
     it('should contain the computer as the opponent with a default name', () => {
