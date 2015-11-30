@@ -7,6 +7,11 @@ let chai = require('chai'),
 
 describe('Game - Initial State', () => {
 
+    //beforeEach((done) => {
+    //    game = new game();
+    //    done();
+    //});
+
     it('should contain a new board to play on', () => {
         should.exist(game.board);
     });

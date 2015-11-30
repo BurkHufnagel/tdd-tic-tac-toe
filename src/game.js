@@ -12,6 +12,7 @@ var game = module.exports = {
     computerPlayer: player.create('player 2 (computer)')
 };
 
+
 game.start = function(){
     started = true
 };
