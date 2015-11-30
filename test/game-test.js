@@ -12,8 +12,7 @@ describe('Game - Initial State', () => {
     });
 
     it('should be able to add a human player with a name to the game', () => {
-        var player1 = player.create();
-        player1.name = "Dave";
+        var player1 = player.create("Dave");
 
         game.humanPlayer = player1;
 
