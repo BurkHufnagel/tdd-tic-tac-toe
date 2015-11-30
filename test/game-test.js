@@ -2,7 +2,8 @@
 
 let chai = require('chai'),
     should = chai.should(),
-    game = require('../src/game');
+    game = require('../src/game'),
+    player = require('../src/player');
 
 describe('Game - Initial State', () => {
 
@@ -10,9 +11,14 @@ describe('Game - Initial State', () => {
         should.exist(game.board);
     });
 
-    it('should contain a new human player without a name', () => {
+    it('should be able to add a human player with a name to the game', () => {
+        var player1 = player.create();
+        player1.name = "Dave";
+
+        game.humanPlayer = player1;
+
         should.exist(game.humanPlayer);
-        should.not.exist(game.humanPlayer.name);
+        game.humanPlayer.name.should.equal(player1.name);
     });
 
     it('should contain the computer as the opponent with a default name', () => {
@@ -21,6 +27,16 @@ describe('Game - Initial State', () => {
     });
 
     it('should have a status of not started', () => {
+        should.exist(game.status);
+        game.status.should.equal('not started');
+    });
+});
+
+describe('Game - Started State', () => {
+
+    it('should have a status of started', () => {
+        game.start();
+
         should.exist(game.status);
         game.status.should.equal('not started');
     });
