@@ -1,18 +1,20 @@
 'use strict';
 
 var board = require('./board'),
-    player = require('./player'),
-    started = false;
+    player = require('./player');
 
-var game = module.exports = {
-    started: started,
-    status: 'not started',
-    board: board.create(),
-    humanPlayer: player.create(),
-    computerPlayer: player.create('player 2 (computer)')
+var game = module.exports = function(){};
+
+game.initialize = function(){
+    this.play = play;
+    this.started = false;
+    this.status = 'not started';
+    this.board = board.create();
+    this.humanPlayer = null;
+    this.computerPlayer = player.create('player 2 (computer)');
 };
 
 
-game.start = function(){
-    started = true
+function play(){
+    this.started = true
 };

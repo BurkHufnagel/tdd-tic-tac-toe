@@ -7,10 +7,10 @@ let chai = require('chai'),
 describe('Board Tests', () => {
 
     it('board should be initialized with empty values', () => {
-        var newBoard = board.create();
+        var newBoard = board.create(), row, column;
 
-        for(var row in newBoard){
-            for(var column in row){
+        for(row in newBoard){
+            for(column in row){
                 newBoard[row][column].should.equal("");
             }
         }
