@@ -9,7 +9,7 @@ let chai = require('chai'),
 describe('Game - Initial State', () => {
 
     beforeEach((done) => {
-        newGame = new game.initialize();
+        createNewGame();
         done();
     });
 
@@ -39,7 +39,7 @@ describe('Game - Initial State', () => {
 
 describe('Game - Started State', () => {
     beforeEach((done) => {
-        newGame = new game.initialize();
+        createNewGame();
         done();
     });
 
@@ -51,3 +51,7 @@ describe('Game - Started State', () => {
         newGame.status.should.equal('not started');
     });
 });
+
+function createNewGame(){
+    newGame = new game.initialize();
+}
