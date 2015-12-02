@@ -15,7 +15,7 @@ describe('Board Tests', () => {
         newBoard[0].length.should.equal(3);
     });
 
-    it('board should be initialized with empty values in a 9 cell matrix', () => {
+    it('board should be initialized with empty strings', () => {
         var newBoard = board.create(), row, column;
         for(row in newBoard){
 
