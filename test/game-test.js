@@ -57,7 +57,7 @@ describe('Game - Play State', () => {
     it('should be able to keep track consecutive moves by a player', () => {
         newGame.play();
 
-        var computerPlayer = newGame.humanPlayer;
+        var computerPlayer = newGame.computerPlayer;
 
         var moveValue1 = "X",
             moveValue2 = "O";
