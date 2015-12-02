@@ -80,10 +80,6 @@ describe('Game - Play State', () => {
         newGame.board[moves[2].coordinates.x][moves[2].coordinates.y] = moveValue1;
     });
 
-    it('', () => {
-
-    });
-
 });
 
 
