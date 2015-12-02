@@ -61,18 +61,18 @@ describe('Game - Play State', () => {
     });
 
     it('should be able to keep track consecutive moves by a player', () => {
-
-        var moveValue1 = "X",
-            moveValue2 = "O",
-            move1 = (newGame.humanPlayer, { x:0, y:0 }),
-            move2 = createMove(newGame.humanPlayer, { x:0, y:1 }),
-            move3 = createMove(newGame.humanPlayer, { x:1, y:0 });
-
         newGame.play();
         newGame.humanPlayer = player.create("Dave");
 
+        var moveValue1 = "X",
+            moveValue2 = "O";
+
         newGame.humanPlayer.moveValue = moveValue1;
         newGame.computerPlayer.moveValue = moveValue2;
+
+        var move1 = createMove(newGame.humanPlayer, { x:0, y:0 }),
+            move2 = createMove(newGame.computerPlayer, { x:0, y:1 }),
+            move3 = createMove(newGame.humanPlayer, { x:1, y:0 });
 
         newGame.makeMove(move1);
         newGame.makeMove(move2);
