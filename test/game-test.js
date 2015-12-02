@@ -9,7 +9,7 @@ let chai = require('chai'),
     newGame;
 
 beforeEach((done) => {
-    createGame();
+    newGame = new Game();
     humanPlayer = newGame.humanPlayer = createPlayer("Dave");
     done();
 });
@@ -81,10 +81,6 @@ describe('Game - Play State', () => {
     });
 });
 
-
-function createGame(){
-    newGame = new Game();
-};
 
 function createPlayer(name){
     return player.create(name);
