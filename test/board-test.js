@@ -17,8 +17,8 @@ describe('Board Tests', () => {
 
     it('board should be initialized with empty strings', () => {
         var newBoard = board.create(), row, column;
-        for(row in newBoard){
 
+        for(row in newBoard){
             for(column in row){
                 newBoard[row][column].should.equal("");
             }
