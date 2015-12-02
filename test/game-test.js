@@ -79,7 +79,6 @@ describe('Game - Play State', () => {
         newGame.board[moves[1].coordinates.x][moves[1].coordinates.y] = moveValue2;
         newGame.board[moves[2].coordinates.x][moves[2].coordinates.y] = moveValue1;
     });
-
 });
 
 
@@ -94,7 +93,6 @@ function createPlayer(name){
 function setMoveValue(player, moveValue){
     player.moveValue = moveValue;
 };
-
 
 function createMove(player, coordinates){
     return {
