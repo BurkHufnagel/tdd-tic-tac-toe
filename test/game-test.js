@@ -50,26 +50,16 @@ describe('Game - Play State', () => {
         newGame.started.should.equal(true);
     });
 
-    it('should be able to track individual players who are making a move', () => {
+    it('should be able to make a move on the board by setting it to a specific value"', () => {
+        var moveCoordinate = { x:0, y:0 },
+            moveValue = "X";
+
         newGame.play();
         newGame.humanPlayer = player.create("Dave");
-
-        newGame.makeMove(newGame.humanPlayer);
-        newGame.currentMove.player.should.equal(newGame.humanPlayer);
-
-        newGame.makeMove(newGame.computerPlayer);
-        newGame.currentMove.player.should.equal(newGame.computerPlayer);
-    });
-
-    it('should be able to set the move to a certain value for a player', () => {
-        newGame.play();
-        var moveValue = "X";
-        newGame.humanPlayer = player.create("Dave");
-
         newGame.humanPlayer.moveValue = moveValue;
-        newGame.makeMove(newGame.humanPlayer);
 
-        newGame.currentMove.moveValue.should.equal(moveValue);
+        newGame.makeMove(newGame.humanPlayer, moveCoordinate);
+        newGame.board[moveCoordinate.x][moveCoordinate.y].should.equal(moveValue);
     });
 
 });
