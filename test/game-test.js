@@ -2,14 +2,14 @@
 
 let chai = require('chai'),
     should = chai.should(),
-    game = require('../src/game'),
+    Game = require('../src/game'),
     player = require('../src/player'),
     newGame;
 
 describe('Game - Initial State', () => {
 
     beforeEach((done) => {
-        createNewGame();
+        createGame();
         done();
     });
 
@@ -31,27 +31,24 @@ describe('Game - Initial State', () => {
         newGame.computerPlayer.should.have.deep.property('name', 'player 2 (computer)');
     });
 
-    it('should have a status of not started', () => {
-        should.exist(newGame.status);
-        newGame.status.should.equal('not started');
+    it('should not be started initially', () => {
+        should.exist(newGame.started);
+        newGame.started.should.equal(false);
     });
 });
 
-describe('Game - Started State', () => {
+describe('Game - Play State', () => {
     beforeEach((done) => {
-        createNewGame();
+        createGame();
         done();
     });
-
-
-    it('should have a status of started', () => {
+    it('should set status to started when in play mode', () => {
         newGame.play();
 
-        should.exist(newGame.status);
-        newGame.status.should.equal('not started');
+        newGame.started.should.equal(true);
     });
 });
 
-function createNewGame(){
-    newGame = new game.initialize();
+function createGame(){
+    newGame = Game;
 }
