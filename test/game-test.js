@@ -50,5 +50,5 @@ describe('Game - Play State', () => {
 });
 
 function createGame(){
-    newGame = Game;
+    newGame = new Game();
 }
