@@ -7,9 +7,15 @@ var Game = module.exports = function(){
     this.started = false;
     this.board = board.create();
     this.humanPlayer = null;
-    this.computerPlayer = player.create('player 2 (computer)')
+    this.computerPlayer = player.create('player 2 (computer)');
+    this.currentMove = { player: null };
 };
 
 Game.prototype.play = function(){
     this.started = true
 };
+
+Game.prototype.makeMove = function(player){
+    this.currentMove.player = player;
+};
+

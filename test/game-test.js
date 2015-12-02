@@ -49,7 +49,19 @@ describe('Game - Play State', () => {
 
         newGame.started.should.equal(true);
     });
+
+    it('should be able to track individual players who are making a move', () => {
+        newGame.play();
+        newGame.humanPlayer = player.create("Dave");
+
+        newGame.makeMove(newGame.humanPlayer);
+        newGame.currentMove.player.should.equal(newGame.humanPlayer);
+
+        newGame.makeMove(newGame.computerPlayer);
+        newGame.currentMove.player.should.equal(newGame.computerPlayer);
+    });
 });
+
 
 function createGame(){
     newGame = new Game();
