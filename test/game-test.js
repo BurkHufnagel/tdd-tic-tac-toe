@@ -61,14 +61,17 @@ describe('Game - Play State', () => {
         newGame.currentMove.player.should.equal(newGame.computerPlayer);
     });
 
-    it('should be able to track coordinates of a move on the board', () => {
+    it('should be able to set the move to a certain value for a player', () => {
         newGame.play();
+        var moveValue = "X";
         newGame.humanPlayer = player.create("Dave");
-        var moveCoordinate = newGame.board[0][0];
 
-        newGame.makeMove(newGame.humanPlayer,moveCoordinate);
-        newGame.currentMove.coordinate.should.equal(moveCoordinate);
+        newGame.humanPlayer.moveValue = moveValue;
+        newGame.makeMove(newGame.humanPlayer);
+
+        newGame.currentMove.moveValue.should.equal(moveValue);
     });
+
 });
 
 
