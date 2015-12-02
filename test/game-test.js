@@ -38,10 +38,12 @@ describe('Game - Initial State', () => {
 });
 
 describe('Game - Play State', () => {
+
     beforeEach((done) => {
         createGame();
         done();
     });
+
     it('should set status to started when in play mode', () => {
         newGame.play();
 
