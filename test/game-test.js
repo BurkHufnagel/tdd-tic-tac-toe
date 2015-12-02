@@ -44,22 +44,55 @@ describe('Game - Play State', () => {
         done();
     });
 
-    it('should set status to started when in play mode', () => {
-        newGame.play();
-
-        newGame.started.should.equal(true);
-    });
-
     it('should be able to make a move on the board by setting it to a specific value"', () => {
-        var moveCoordinate = { x:0, y:0 },
-            moveValue = "X";
+        var moveValue = "X";
 
         newGame.play();
         newGame.humanPlayer = player.create("Dave");
         newGame.humanPlayer.moveValue = moveValue;
 
-        newGame.makeMove(newGame.humanPlayer, moveCoordinate);
-        newGame.board[moveCoordinate.x][moveCoordinate.y].should.equal(moveValue);
+        var move1 = {
+            player: newGame.humanPlayer,
+            coordinates: { x:0, y:0 }
+        };
+
+        newGame.makeMove(move1);
+        newGame.board[move1.coordinates.x][move1.coordinates.y].should.equal(moveValue);
+    });
+
+    it('should be able to keep track consecutive moves by a player', () => {
+
+        var moveValue1 = "X",
+            moveValue2 = "O";
+
+        newGame.play();
+        newGame.humanPlayer = player.create("Dave");
+
+        newGame.humanPlayer.moveValue = moveValue1;
+        newGame.computerPlayer.moveValue = moveValue2;
+
+        var move1 = {
+            player: newGame.humanPlayer,
+            coordinates: { x:0, y:0 }
+        };
+
+        var move2 = {
+            player: newGame.computerPlayer,
+            coordinates: { x:0, y:1 }
+        };
+
+        var move3 = {
+            player: newGame.humanPlayer,
+            coordinates: { x:1, y:0 }
+        };
+
+        newGame.makeMove(move1);
+        newGame.makeMove(move2);
+        newGame.makeMove(move3);
+
+        newGame.moves[0].should.deep.equal(move1);
+        newGame.moves[1].should.deep.equal(move2);
+        newGame.moves[2].should.deep.equal(move3);
     });
 
 });

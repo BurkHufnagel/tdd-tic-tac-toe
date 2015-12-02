@@ -8,13 +8,15 @@ var Game = module.exports = function(){
     this.board = board.create();
     this.humanPlayer = null;
     this.computerPlayer = player.create('player 2 (computer)');
+    this.moves = []
 };
 
 Game.prototype.play = function(){
     this.started = true
 };
 
-Game.prototype.makeMove = function(player, boardCoordinate){
-    this.board[boardCoordinate.x][boardCoordinate.y] = player.moveValue;
+Game.prototype.makeMove = function(move){
+    this.board[move.coordinates.x][move.coordinates.y] = move.player.moveValue;
+    this.moves.push(move);
 };
 
