@@ -93,6 +93,10 @@ describe('Game - Play State', () => {
         newGame.moves[0].should.deep.equal(move1);
         newGame.moves[1].should.deep.equal(move2);
         newGame.moves[2].should.deep.equal(move3);
+
+        newGame.board[move1.coordinates.x][move1.coordinates.y] = moveValue1;
+        newGame.board[move2.coordinates.x][move1.coordinates.y] = moveValue2;
+        newGame.board[move3.coordinates.x][move1.coordinates.y] = moveValue1;
     });
 
 });
