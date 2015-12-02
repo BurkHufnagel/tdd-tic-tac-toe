@@ -70,21 +70,19 @@ describe('Game - Play State', () => {
         newGame.humanPlayer.moveValue = moveValue1;
         newGame.computerPlayer.moveValue = moveValue2;
 
-        var move1 = createMove(newGame.humanPlayer, { x:0, y:0 }),
-            move2 = createMove(newGame.computerPlayer, { x:0, y:1 }),
-            move3 = createMove(newGame.humanPlayer, { x:1, y:0 });
+        var moves = [createMove(newGame.humanPlayer, { x:0, y:0 }),
+                     createMove(newGame.computerPlayer, { x:0, y:1 }),
+                     createMove(newGame.humanPlayer, { x:1, y:0 })];
 
-        newGame.makeMove(move1);
-        newGame.makeMove(move2);
-        newGame.makeMove(move3);
-
-        newGame.moves[0].should.deep.equal(move1);
-        newGame.moves[1].should.deep.equal(move2);
-        newGame.moves[2].should.deep.equal(move3);
-
-        newGame.board[move1.coordinates.x][move1.coordinates.y] = moveValue1;
-        newGame.board[move2.coordinates.x][move1.coordinates.y] = moveValue2;
-        newGame.board[move3.coordinates.x][move1.coordinates.y] = moveValue1;
+        var i = 0;
+        for(var move of moves){
+            newGame.makeMove(move);
+            newGame.moves[i].should.deep.equal(move);
+            i++;
+        }
+        newGame.board[moves[0].coordinates.x][moves[0].coordinates.y] = moveValue1;
+        newGame.board[moves[1].coordinates.x][moves[1].coordinates.y] = moveValue2;
+        newGame.board[moves[2].coordinates.x][moves[2].coordinates.y] = moveValue1;
     });
 
 });
