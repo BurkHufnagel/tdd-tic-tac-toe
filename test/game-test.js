@@ -76,8 +76,11 @@ describe('Game - Play State', () => {
             i++;
         }
         newGame.board[moves[0].coordinates.x][moves[0].coordinates.y] = moveValue1;
+        newGame.moves[0].player.should.deep.equal(humanPlayer);
         newGame.board[moves[1].coordinates.x][moves[1].coordinates.y] = moveValue2;
+        newGame.moves[1].player.should.deep.equal(computerPlayer);
         newGame.board[moves[2].coordinates.x][moves[2].coordinates.y] = moveValue1;
+        newGame.moves[2].player.should.deep.equal(humanPlayer);
     });
 });
 
