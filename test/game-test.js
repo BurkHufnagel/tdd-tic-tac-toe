@@ -105,11 +105,12 @@ describe('Game - Play State', () => {
         newGame.winner.should.deep.equal(newGame.humanPlayer);
 
         newGame.moves = [];
+        newGame.winner = null;
         moves = [createMove(newGame.humanPlayer, { x:0, y:2 }),
-            createMove(newGame.computerPlayer, { x:0, y:1 }),
-            createMove(newGame.humanPlayer, { x:1, y:1 }),
-            createMove(newGame.computerPlayer, { x:2, y:1 }),
-            createMove(newGame.humanPlayer, { x:2, y:0 })];
+                 createMove(newGame.computerPlayer, { x:0, y:1 }),
+                 createMove(newGame.humanPlayer, { x:1, y:1 }),
+                 createMove(newGame.computerPlayer, { x:2, y:1 }),
+                 createMove(newGame.humanPlayer, { x:2, y:0 })];
 
         makeMoves(moves);
 
@@ -122,16 +123,41 @@ describe('Game - Play State', () => {
         setMoveValue(humanPlayer, "X");
         setMoveValue(newGame.computerPlayer, "O");
 
+        var moves = [];
+
         var moves = [createMove(newGame.humanPlayer, { x:0, y:0 }),
-            createMove(newGame.computerPlayer, { x:1, y:1 }),
-            createMove(newGame.humanPlayer, { x:0, y:1 }),
-            createMove(newGame.computerPlayer, { x:2, y:1 }),
-            createMove(newGame.humanPlayer, { x:0, y:2 })];
+                     createMove(newGame.computerPlayer, { x:1, y:1 }),
+                     createMove(newGame.humanPlayer, { x:0, y:1 }),
+                     createMove(newGame.computerPlayer, { x:2, y:2 }),
+                     createMove(newGame.humanPlayer, { x:0, y:2 })];
 
         makeMoves(moves);
 
         newGame.winner.should.deep.equal(newGame.humanPlayer);
 
+        newGame.moves = [];
+        newGame.winner = null;
+        moves = [createMove(newGame.humanPlayer, { x:1, y:0 }),
+                 createMove(newGame.computerPlayer, { x:0, y:0 }),
+                 createMove(newGame.humanPlayer, { x:1, y:1 }),
+                 createMove(newGame.computerPlayer, { x:2, y:2 }),
+                 createMove(newGame.humanPlayer, { x:1, y:2 })];
+
+        makeMoves(moves);
+
+        newGame.winner.should.deep.equal(newGame.humanPlayer);
+
+        newGame.moves = [];
+        newGame.winner = null;
+        moves = [createMove(newGame.humanPlayer, { x:2, y:0 }),
+                 createMove(newGame.computerPlayer, { x:0, y:0 }),
+                 createMove(newGame.humanPlayer, { x:2, y:1 }),
+                 createMove(newGame.computerPlayer, { x:0, y:1 }),
+                 createMove(newGame.humanPlayer, { x:2, y:2 })];
+
+        makeMoves(moves);
+
+        newGame.winner.should.deep.equal(newGame.humanPlayer);
     });
 });
 
