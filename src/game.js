@@ -24,6 +24,7 @@ Game.prototype.makeMove = function(move){
 
 function checkForWinner(game){
     setWinnerForLeftToRightDiagonal(game);
+    setWinnerForRightToLeftDiagonal(game);
 };
 
 function setWinnerForLeftToRightDiagonal(game){
@@ -47,6 +48,31 @@ function setWinnerForLeftToRightDiagonal(game){
 
         if (diagonalMoveValues.length === 3 && diagonalMoveValues.allValuesSame() && players.allValuesSame()) {
                 game.winner = players[0];
+        }
+    }
+}
+
+function setWinnerForRightToLeftDiagonal(game){
+
+    var diagonalMoveValues = [];
+    var players = [];
+
+    if(game.winner) return;
+
+    if(game.moves && game.moves.length >= 5) {
+
+        for (var move of game.moves) {
+            if (move.coordinates.x === 0 && move.coordinates.y === 2 ||
+                move.coordinates.x === 1 && move.coordinates.y === 1 ||
+                move.coordinates.x === 2 && move.coordinates.y === 0) {
+
+                diagonalMoveValues.push(move.player.moveValue);
+                players.push(move.player)
+            }
+        }
+
+        if (diagonalMoveValues.length === 3 && diagonalMoveValues.allValuesSame() && players.allValuesSame()) {
+            game.winner = players[0];
         }
     }
 }
