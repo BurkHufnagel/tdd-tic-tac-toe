@@ -24,6 +24,7 @@ Game.prototype.makeMove = function(move){
 
 function checkForWinner(game){
     setWinnerForDiagonal(game);
+    setWinnerForRow(game);
 };
 
 function setWinnerForDiagonal(game){
@@ -51,6 +52,30 @@ function setWinnerForDiagonal(game){
         }
     }
 }
+
+function setWinnerForRow(game){
+    var rowMoves = [];
+    var players = [];
+
+    if(game.winner) return;
+
+    if(game.moves && game.moves.length >= 5) {
+        for (var move of game.moves) {
+            if (move.coordinates.x === 0 && move.coordinates.y === 0 ||
+                move.coordinates.x === 0 && move.coordinates.y === 1 ||
+                move.coordinates.x === 0 && move.coordinates.y === 2)
+            {
+                rowMoves.push(move.player.moveValue);
+                players.push(move.player)
+            }
+        }
+
+        if (rowMoves.length === 3 && rowMoves.allValuesSame() && players.allValuesSame()) {
+            game.winner = players[0];
+        }
+    }
+
+};
 
 Array.prototype.allValuesSame = function(){
     for(var i = 1; i < this.length; i++)

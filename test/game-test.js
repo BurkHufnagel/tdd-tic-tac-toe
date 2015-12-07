@@ -115,6 +115,24 @@ describe('Game - Play State', () => {
 
         newGame.winner.should.deep.equal(newGame.humanPlayer);
     });
+
+    it('should win when 3 values are the same for a row', () => {
+        newGame.play();
+
+        setMoveValue(humanPlayer, "X");
+        setMoveValue(newGame.computerPlayer, "O");
+
+        var moves = [createMove(newGame.humanPlayer, { x:0, y:0 }),
+            createMove(newGame.computerPlayer, { x:1, y:1 }),
+            createMove(newGame.humanPlayer, { x:0, y:1 }),
+            createMove(newGame.computerPlayer, { x:2, y:1 }),
+            createMove(newGame.humanPlayer, { x:0, y:2 })];
+
+        makeMoves(moves);
+
+        newGame.winner.should.deep.equal(newGame.humanPlayer);
+
+    });
 });
 
 
