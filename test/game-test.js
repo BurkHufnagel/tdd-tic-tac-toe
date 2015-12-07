@@ -74,11 +74,12 @@ describe('Game - Play State', () => {
                      createMove(newGame.humanPlayer, { x:1, y:0 })];
 
         var i = 0;
-        for(var move of moves){
+        for(let move of moves){
             newGame.makeMove(move);
             newGame.moves[i].should.deep.equal(move);
             i++;
-        }
+        };
+
         newGame.board[moves[0].coordinates.x][moves[0].coordinates.y] = moveValue1;
         newGame.moves[0].player.should.deep.equal(humanPlayer);
         newGame.board[moves[1].coordinates.x][moves[1].coordinates.y] = moveValue2;
