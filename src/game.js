@@ -23,11 +23,10 @@ Game.prototype.makeMove = function(move){
 };
 
 function checkForWinner(game){
-    setWinnerForLeftToRightDiagonal(game);
-    //setWinnerForRightToLeftDiagonal(game);
+    setWinnerForDiagonal(game);
 };
 
-function setWinnerForLeftToRightDiagonal(game){
+function setWinnerForDiagonal(game){
 
     var diagonalMoveValues = [];
     var players = [];
