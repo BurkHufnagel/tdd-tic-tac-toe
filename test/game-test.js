@@ -87,7 +87,7 @@ describe('Game - Play State', () => {
         newGame.moves[2].player.should.deep.equal(humanPlayer);
     });
 
-    it('should win when 3 diagonal values are the same left to right', () => {
+    it('should win when 3 diagonal values are the same left to right or right to left', () => {
         newGame.play();
 
         setMoveValue(humanPlayer, "X");
@@ -104,15 +104,9 @@ describe('Game - Play State', () => {
         }
 
         newGame.winner.should.deep.equal(newGame.humanPlayer);
-    });
 
-    it('should win when 3 diagonal values are the same right to left', () => {
-        newGame.play();
-
-        setMoveValue(humanPlayer, "X");
-        setMoveValue(newGame.computerPlayer, "O");
-
-        var moves = [createMove(newGame.humanPlayer, { x:0, y:2 }),
+        newGame.moves = [];
+        moves = [createMove(newGame.humanPlayer, { x:0, y:2 }),
             createMove(newGame.computerPlayer, { x:0, y:1 }),
             createMove(newGame.humanPlayer, { x:1, y:1 }),
             createMove(newGame.computerPlayer, { x:2, y:1 }),
