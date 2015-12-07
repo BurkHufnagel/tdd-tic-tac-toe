@@ -99,9 +99,7 @@ describe('Game - Play State', () => {
                      createMove(newGame.computerPlayer, { x:2, y:1 }),
                      createMove(newGame.humanPlayer, { x:2, y:2 })];
 
-        for(var move of moves){
-            newGame.makeMove(move);
-        }
+        makeMoves(moves);
 
         newGame.winner.should.deep.equal(newGame.humanPlayer);
 
@@ -112,9 +110,7 @@ describe('Game - Play State', () => {
             createMove(newGame.computerPlayer, { x:2, y:1 }),
             createMove(newGame.humanPlayer, { x:2, y:0 })];
 
-        for(var move of moves){
-            newGame.makeMove(move);
-        }
+        makeMoves(moves);
 
         newGame.winner.should.deep.equal(newGame.humanPlayer);
     });
@@ -134,4 +130,10 @@ function createMove(player, coordinates){
         player: player,
         coordinates: coordinates
     };
+};
+
+function makeMoves(moves){
+    for(var move of moves){
+        newGame.makeMove(move);
+    }
 }
