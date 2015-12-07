@@ -8,10 +8,9 @@ let chai = require('chai'),
     humanPlayer,
     newGame;
 
-beforeEach((done) => {
+beforeEach(() => {
     newGame = new Game();
     humanPlayer = newGame.humanPlayer = createPlayer("Dave");
-    done();
 });
 
 
@@ -39,6 +38,12 @@ describe('Game - Initial State', () => {
 
 describe('Game - Play State', () => {
 
+    it('should have a started status when play is initiated', () => {
+        newGame.play();
+        should.exist(newGame.started);
+        newGame.started.should.equal(true);
+    });
+
     it('should be able to make a move on the board by setting it to a specific value"', () => {
         var moveValue = "X";
 
@@ -54,12 +59,11 @@ describe('Game - Play State', () => {
         newGame.board[move1.coordinates.x][move1.coordinates.y].should.equal(moveValue);
     });
 
-    it('should be able to keep track consecutive moves by a player', () => {
+    it('should be able to keep track of consecutive moves by a player', () => {
         newGame.play();
 
-        var computerPlayer = newGame.computerPlayer;
-
-        var moveValue1 = "X",
+        var computerPlayer = newGame.computerPlayer,
+            moveValue1 = "X",
             moveValue2 = "O";
 
         setMoveValue(humanPlayer, moveValue1);
@@ -81,6 +85,25 @@ describe('Game - Play State', () => {
         newGame.moves[1].player.should.deep.equal(computerPlayer);
         newGame.board[moves[2].coordinates.x][moves[2].coordinates.y] = moveValue1;
         newGame.moves[2].player.should.deep.equal(humanPlayer);
+    });
+
+    it('should win when 3 diagonal values are the same left to right', () => {
+        newGame.play();
+
+        setMoveValue(humanPlayer, "X");
+        setMoveValue(newGame.computerPlayer, "O");
+
+        var moves = [createMove(newGame.humanPlayer, { x:0, y:0 }),
+                     createMove(newGame.computerPlayer, { x:0, y:1 }),
+                     createMove(newGame.humanPlayer, { x:1, y:1 }),
+                     createMove(newGame.computerPlayer, { x:2, y:1 }),
+                     createMove(newGame.humanPlayer, { x:2, y:2 })];
+
+        for(var move of moves){
+            newGame.makeMove(move);
+        }
+
+        newGame.winner.should.deep.equal(newGame.humanPlayer);
     });
 });
 

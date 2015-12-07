@@ -1,11 +1,7 @@
 'use strict';
 
-module.exports = {
-    create: create
-};
-
-function create(){
+module.exports = function(){
     return  [["", "", ""],
              ["", "", ""],
              ["", "", ""]];
-}
+};
