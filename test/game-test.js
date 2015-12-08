@@ -6,11 +6,16 @@ let chai = require('chai'),
     player = require('../src/player'),
 
     humanPlayer,
+    computerPlayer,
     newGame;
 
 beforeEach(() => {
     newGame = new Game();
     humanPlayer = newGame.humanPlayer = createPlayer("Dave");
+    computerPlayer = newGame.computerPlayer;
+
+    setMoveValue(humanPlayer, "X");
+    setMoveValue(computerPlayer, "O");
 });
 
 
@@ -45,10 +50,7 @@ describe('Game - Play State', () => {
     });
 
     it('should be able to make a move on the board by setting it to a specific value"', () => {
-        var moveValue = "X";
-
         newGame.play();
-        newGame.humanPlayer.moveValue = moveValue;
 
         var move1 = {
             player: newGame.humanPlayer,
@@ -56,18 +58,11 @@ describe('Game - Play State', () => {
         };
 
         newGame.makeMove(move1);
-        newGame.board[move1.coordinates.x][move1.coordinates.y].should.equal(moveValue);
+        newGame.board[move1.coordinates.x][move1.coordinates.y].should.equal("X");
     });
 
     it('should be able to keep track of consecutive moves by a player', () => {
         newGame.play();
-
-        var computerPlayer = newGame.computerPlayer,
-            moveValue1 = "X",
-            moveValue2 = "O";
-
-        setMoveValue(humanPlayer, moveValue1);
-        setMoveValue(computerPlayer, moveValue2);
 
         var moves = [createMove(newGame.humanPlayer, { x:0, y:0 }),
                      createMove(newGame.computerPlayer, { x:0, y:1 }),
@@ -80,19 +75,16 @@ describe('Game - Play State', () => {
             i++;
         };
 
-        newGame.board[moves[0].coordinates.x][moves[0].coordinates.y] = moveValue1;
+        newGame.board[moves[0].coordinates.x][moves[0].coordinates.y] = "X";
         newGame.moves[0].player.should.deep.equal(humanPlayer);
-        newGame.board[moves[1].coordinates.x][moves[1].coordinates.y] = moveValue2;
+        newGame.board[moves[1].coordinates.x][moves[1].coordinates.y] = "O";
         newGame.moves[1].player.should.deep.equal(computerPlayer);
-        newGame.board[moves[2].coordinates.x][moves[2].coordinates.y] = moveValue1;
+        newGame.board[moves[2].coordinates.x][moves[2].coordinates.y] = "X";
         newGame.moves[2].player.should.deep.equal(humanPlayer);
     });
 
     it('should be able to win for 2 different players diagonally', () => {
         newGame.play();
-
-        setMoveValue(humanPlayer, "X");
-        setMoveValue(newGame.computerPlayer, "O");
 
         makeMoves(movesForLeftToRightDiagonalWinner());
         newGame.winner.should.deep.equal(newGame.humanPlayer);
@@ -105,9 +97,6 @@ describe('Game - Play State', () => {
 
     it('should be able to win for two different players for a row', () => {
         newGame.play();
-
-        setMoveValue(humanPlayer, "X");
-        setMoveValue(newGame.computerPlayer, "O");
 
         makeMoves(movesForTopRowWinner());
         newGame.winner.should.deep.equal(newGame.humanPlayer);
