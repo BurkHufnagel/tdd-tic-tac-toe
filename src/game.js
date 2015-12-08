@@ -38,11 +38,9 @@ function setWinnerForDiagonal(game){
     if(game.moves && game.moves.length >= 5) {
 
         for (var move of game.moves) {
-            if (move.coordinates.x === 1 && move.coordinates.y === 1 ||
-                move.coordinates.x === 0 && move.coordinates.y === 0 ||
-                move.coordinates.x === 2 && move.coordinates.y === 2 ||
-                move.coordinates.x === 0 && move.coordinates.y === 2 ||
-                move.coordinates.x === 2 && move.coordinates.y === 0)
+            if (move.coordinates.x === 1 && (move.coordinates.y === 1) ||
+                move.coordinates.x === 0 && (move.coordinates.y === 0 || move.coordinates.y === 2) ||
+                move.coordinates.x === 2 && (move.coordinates.y === 2 || move.coordinates.y === 0))
             {
                 saveMove(movesMade, move, players);
             }
