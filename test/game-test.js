@@ -97,10 +97,9 @@ describe('Game - Play State', () => {
         makeMoves(movesForLeftToRightDiagonalWinner());
         newGame.winner.should.deep.equal(newGame.humanPlayer);
 
-        newGame.moves = [];
-        newGame.winner = null;
+        resetMoves();
+        resetWinner();
         makeMoves(movesForRightToLeftDiagonalWinner());
-
         newGame.winner.should.deep.equal(newGame.computerPlayer);
     });
 
@@ -113,13 +112,13 @@ describe('Game - Play State', () => {
         makeMoves(movesForTopRowWinner());
         newGame.winner.should.deep.equal(newGame.humanPlayer);
 
-        newGame.moves = [];
-        newGame.winner = null;
+        resetMoves();
+        resetWinner();
         makeMoves(movesForMiddleRowWinner());
         newGame.winner.should.deep.equal(newGame.computerPlayer);
 
-        newGame.moves = [];
-        newGame.winner = null;
+        resetMoves();
+        resetWinner();
         makeMoves(movesForBottomRowWinner());
         newGame.winner.should.deep.equal(newGame.humanPlayer);
     });
@@ -186,3 +185,11 @@ function movesForBottomRowWinner(){
             createMove(newGame.computerPlayer, { x:0, y:1 }),
             createMove(newGame.humanPlayer, { x:2, y:2 })];
 };
+
+function resetMoves(){
+    newGame.moves = [];
+};
+
+function resetWinner(){
+    newGame.winner = null;
+}
