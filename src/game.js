@@ -30,8 +30,8 @@ function checkForWinner(game){
 };
 
 function setWinnerForDiagonal(game){
-    var diagonalMoveValues = [];
-    var players = [];
+    var diagonalMoveValues = [],
+        players = [];
 
     if(game.winner) return;
 
@@ -56,8 +56,8 @@ function setWinnerForDiagonal(game){
 }
 
 function setWinnerForRowOne(game){
-    var rowMoves = [];
-    var players = [];
+    var rowMoves = [],
+        players = [];
 
     if(game.winner) return;
 
@@ -80,8 +80,8 @@ function setWinnerForRowOne(game){
 };
 
 function setWinnerForRowTwo(game){
-    var rowMoves = [];
-    var players = [];
+    var rowMoves = [],
+        players = [];
 
     if(game.winner) return;
 

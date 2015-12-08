@@ -88,7 +88,7 @@ describe('Game - Play State', () => {
         newGame.moves[2].player.should.deep.equal(humanPlayer);
     });
 
-    it('should win when 3 diagonal values are the same left to right or right to left', () => {
+    it('should win for 2 different players diagonally', () => {
         newGame.play();
 
         setMoveValue(humanPlayer, "X");
@@ -106,18 +106,18 @@ describe('Game - Play State', () => {
 
         newGame.moves = [];
         newGame.winner = null;
-        moves = [createMove(newGame.humanPlayer, { x:0, y:2 }),
-                 createMove(newGame.computerPlayer, { x:0, y:1 }),
-                 createMove(newGame.humanPlayer, { x:1, y:1 }),
-                 createMove(newGame.computerPlayer, { x:2, y:1 }),
-                 createMove(newGame.humanPlayer, { x:2, y:0 })];
+        moves = [createMove(newGame.computerPlayer, { x:0, y:2 }),
+                 createMove(newGame.humanPlayer, { x:0, y:1 }),
+                 createMove(newGame.computerPlayer, { x:1, y:1 }),
+                 createMove(newGame.humanPlayer, { x:2, y:1 }),
+                 createMove(newGame.computerPlayer, { x:2, y:0 })];
 
         makeMoves(moves);
 
-        newGame.winner.should.deep.equal(newGame.humanPlayer);
+        newGame.winner.should.deep.equal(newGame.computerPlayer);
     });
 
-    it('should win when 3 values are the same for a row', () => {
+    it('should win for two different players for a row', () => {
         newGame.play();
 
         setMoveValue(humanPlayer, "X");
@@ -137,15 +137,15 @@ describe('Game - Play State', () => {
 
         newGame.moves = [];
         newGame.winner = null;
-        moves = [createMove(newGame.humanPlayer, { x:1, y:0 }),
-                 createMove(newGame.computerPlayer, { x:0, y:0 }),
-                 createMove(newGame.humanPlayer, { x:1, y:1 }),
-                 createMove(newGame.computerPlayer, { x:2, y:2 }),
-                 createMove(newGame.humanPlayer, { x:1, y:2 })];
+        moves = [createMove(newGame.computerPlayer, { x:1, y:0 }),
+                 createMove(newGame.humanPlayer, { x:0, y:0 }),
+                 createMove(newGame.computerPlayer, { x:1, y:1 }),
+                 createMove(newGame.humanPlayer, { x:2, y:2 }),
+                 createMove(newGame.computerPlayer, { x:1, y:2 })];
 
         makeMoves(moves);
 
-        newGame.winner.should.deep.equal(newGame.humanPlayer);
+        newGame.winner.should.deep.equal(newGame.computerPlayer);
 
         newGame.moves = [];
         newGame.winner = null;
