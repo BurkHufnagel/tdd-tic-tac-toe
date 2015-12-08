@@ -88,7 +88,7 @@ describe('Game - Play State', () => {
         newGame.moves[2].player.should.deep.equal(humanPlayer);
     });
 
-    it('should win for 2 different players diagonally', () => {
+    it('should be able to win for 2 different players diagonally', () => {
         newGame.play();
 
         setMoveValue(humanPlayer, "X");
@@ -117,7 +117,7 @@ describe('Game - Play State', () => {
         newGame.winner.should.deep.equal(newGame.computerPlayer);
     });
 
-    it('should win for two different players for a row', () => {
+    it('should be able to win for two different players for a row', () => {
         newGame.play();
 
         setMoveValue(humanPlayer, "X");
