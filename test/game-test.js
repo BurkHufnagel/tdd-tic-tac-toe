@@ -94,25 +94,12 @@ describe('Game - Play State', () => {
         setMoveValue(humanPlayer, "X");
         setMoveValue(newGame.computerPlayer, "O");
 
-        var moves = [createMove(newGame.humanPlayer, { x:0, y:0 }),
-                     createMove(newGame.computerPlayer, { x:0, y:1 }),
-                     createMove(newGame.humanPlayer, { x:1, y:1 }),
-                     createMove(newGame.computerPlayer, { x:2, y:1 }),
-                     createMove(newGame.humanPlayer, { x:2, y:2 })];
-
-        makeMoves(moves);
-
+        makeMoves(movesForLeftToRightDiagonal());
         newGame.winner.should.deep.equal(newGame.humanPlayer);
 
         newGame.moves = [];
         newGame.winner = null;
-        moves = [createMove(newGame.computerPlayer, { x:0, y:2 }),
-                 createMove(newGame.humanPlayer, { x:0, y:1 }),
-                 createMove(newGame.computerPlayer, { x:1, y:1 }),
-                 createMove(newGame.humanPlayer, { x:2, y:1 }),
-                 createMove(newGame.computerPlayer, { x:2, y:0 })];
-
-        makeMoves(moves);
+        makeMoves(movesForRightToLeftDiagonal());
 
         newGame.winner.should.deep.equal(newGame.computerPlayer);
     });
@@ -123,40 +110,17 @@ describe('Game - Play State', () => {
         setMoveValue(humanPlayer, "X");
         setMoveValue(newGame.computerPlayer, "O");
 
-        var moves = [];
-
-        var moves = [createMove(newGame.humanPlayer, { x:0, y:0 }),
-                     createMove(newGame.computerPlayer, { x:1, y:1 }),
-                     createMove(newGame.humanPlayer, { x:0, y:1 }),
-                     createMove(newGame.computerPlayer, { x:2, y:2 }),
-                     createMove(newGame.humanPlayer, { x:0, y:2 })];
-
-        makeMoves(moves);
-
+        makeMoves(movesForTopRow());
         newGame.winner.should.deep.equal(newGame.humanPlayer);
 
         newGame.moves = [];
         newGame.winner = null;
-        moves = [createMove(newGame.computerPlayer, { x:1, y:0 }),
-                 createMove(newGame.humanPlayer, { x:0, y:0 }),
-                 createMove(newGame.computerPlayer, { x:1, y:1 }),
-                 createMove(newGame.humanPlayer, { x:2, y:2 }),
-                 createMove(newGame.computerPlayer, { x:1, y:2 })];
-
-        makeMoves(moves);
-
+        makeMoves(movesForMiddleRow());
         newGame.winner.should.deep.equal(newGame.computerPlayer);
 
         newGame.moves = [];
         newGame.winner = null;
-        moves = [createMove(newGame.humanPlayer, { x:2, y:0 }),
-                 createMove(newGame.computerPlayer, { x:0, y:0 }),
-                 createMove(newGame.humanPlayer, { x:2, y:1 }),
-                 createMove(newGame.computerPlayer, { x:0, y:1 }),
-                 createMove(newGame.humanPlayer, { x:2, y:2 })];
-
-        makeMoves(moves);
-
+        makeMoves(movesForBottomRow());
         newGame.winner.should.deep.equal(newGame.humanPlayer);
     });
 });
@@ -181,4 +145,44 @@ function makeMoves(moves){
     for(var move of moves){
         newGame.makeMove(move);
     }
-}
+};
+
+function movesForLeftToRightDiagonal(){
+    return [createMove(newGame.humanPlayer, { x:0, y:0 }),
+            createMove(newGame.computerPlayer, { x:0, y:1 }),
+            createMove(newGame.humanPlayer, { x:1, y:1 }),
+            createMove(newGame.computerPlayer, { x:2, y:1 }),
+            createMove(newGame.humanPlayer, { x:2, y:2 })];
+};
+
+function movesForRightToLeftDiagonal(){
+    return [createMove(newGame.computerPlayer, { x:0, y:2 }),
+            createMove(newGame.humanPlayer, { x:0, y:1 }),
+            createMove(newGame.computerPlayer, { x:1, y:1 }),
+            createMove(newGame.humanPlayer, { x:2, y:1 }),
+            createMove(newGame.computerPlayer, { x:2, y:0 })];
+};
+
+function movesForTopRow(){
+    return [createMove(newGame.humanPlayer, { x:0, y:0 }),
+            createMove(newGame.computerPlayer, { x:1, y:1 }),
+            createMove(newGame.humanPlayer, { x:0, y:1 }),
+            createMove(newGame.computerPlayer, { x:2, y:2 }),
+            createMove(newGame.humanPlayer, { x:0, y:2 })];
+};
+
+function movesForMiddleRow(){
+    return [createMove(newGame.computerPlayer, { x:1, y:0 }),
+            createMove(newGame.humanPlayer, { x:0, y:0 }),
+            createMove(newGame.computerPlayer, { x:1, y:1 }),
+            createMove(newGame.humanPlayer, { x:2, y:2 }),
+            createMove(newGame.computerPlayer, { x:1, y:2 })];
+};
+
+function movesForBottomRow(){
+    return [createMove(newGame.humanPlayer, { x:2, y:0 }),
+            createMove(newGame.computerPlayer, { x:0, y:0 }),
+            createMove(newGame.humanPlayer, { x:2, y:1 }),
+            createMove(newGame.computerPlayer, { x:0, y:1 }),
+            createMove(newGame.humanPlayer, { x:2, y:2 })];
+};
