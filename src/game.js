@@ -44,12 +44,11 @@ function setWinnerForDiagonal(game){
                 move.coordinates.x === 0 && move.coordinates.y === 2 ||
                 move.coordinates.x === 2 && move.coordinates.y === 0)
             {
-                diagonalMoveValues.push(move.player.moveValue);
-                players.push(move.player)
+                saveMove(diagonalMoveValues, move, players);
             }
         }
 
-        if (diagonalMoveValues.length === 3 && diagonalMoveValues.allValuesSame() && players.allValuesSame()) {
+        if (winnerFound(diagonalMoveValues, players)) {
                 game.winner = players[0];
         }
     }
@@ -67,12 +66,11 @@ function setWinnerForRowOne(game){
                 move.coordinates.x === 0 && move.coordinates.y === 1 ||
                 move.coordinates.x === 0 && move.coordinates.y === 2)
             {
-                rowMoves.push(move.player.moveValue);
-                players.push(move.player)
+                saveMove(rowMoves, move, players);
             }
         }
 
-        if (rowMoves.length === 3 && rowMoves.allValuesSame() && players.allValuesSame()) {
+        if (winnerFound(rowMoves, players)) {
             game.winner = players[0];
         }
     }
@@ -91,12 +89,11 @@ function setWinnerForRowTwo(game){
                 move.coordinates.x === 1 && move.coordinates.y === 1 ||
                 move.coordinates.x === 1 && move.coordinates.y === 2)
             {
-                rowMoves.push(move.player.moveValue);
-                players.push(move.player)
+                saveMove(rowMoves, move, players);
             }
         }
 
-        if (rowMoves.length === 3 && rowMoves.allValuesSame() && players.allValuesSame()) {
+        if (winnerFound(rowMoves, players)) {
             game.winner = players[0];
         }
     }
@@ -114,12 +111,11 @@ function setWinnerForRowThree(game){
                 move.coordinates.x === 2 && move.coordinates.y === 1 ||
                 move.coordinates.x === 2 && move.coordinates.y === 2)
             {
-                rowMoves.push(move.player.moveValue);
-                players.push(move.player)
+                saveMove(rowMoves, move, players);
             }
         }
 
-        if (rowMoves.length === 3 && rowMoves.allValuesSame() && players.allValuesSame()) {
+        if (winnerFound(rowMoves, players)) {
             game.winner = players[0];
         }
     }
@@ -133,4 +129,13 @@ Array.prototype.allValuesSame = function(){
     }
     return true;
 };
+
+function winnerFound(moves, players){
+    return moves.length === 3 && moves.allValuesSame() && moves.allValuesSame() && players.allValuesSame()
+}
+
+function saveMove(moves, move, players){
+    moves.push(move.player.moveValue);
+    players.push(move.player)
+}
 

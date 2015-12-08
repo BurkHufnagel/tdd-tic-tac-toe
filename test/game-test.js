@@ -14,7 +14,7 @@ beforeEach(() => {
     humanPlayer = newGame.humanPlayer = createPlayer('Dave');
     computerPlayer = newGame.computerPlayer;
 
-    setMoveValue(humanPlayer, ;'X');
+    setMoveValue(humanPlayer, 'X');
     setMoveValue(computerPlayer, 'O');
 });
 
