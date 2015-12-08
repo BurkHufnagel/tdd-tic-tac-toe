@@ -11,11 +11,11 @@ let chai = require('chai'),
 
 beforeEach(() => {
     newGame = new Game();
-    humanPlayer = newGame.humanPlayer = createPlayer("Dave");
+    humanPlayer = newGame.humanPlayer = createPlayer('Dave');
     computerPlayer = newGame.computerPlayer;
 
-    setMoveValue(humanPlayer, "X");
-    setMoveValue(computerPlayer, "O");
+    setMoveValue(humanPlayer, ;'X');
+    setMoveValue(computerPlayer, 'O');
 });
 
 
@@ -49,7 +49,7 @@ describe('Game - Play State', () => {
         newGame.started.should.equal(true);
     });
 
-    it('should be able to make a move on the board by setting it to a specific value"', () => {
+    it('should be able to make a move on the board by setting it to a specific value', () => {
         newGame.play();
 
         var move1 = {
@@ -58,7 +58,7 @@ describe('Game - Play State', () => {
         };
 
         newGame.makeMove(move1);
-        newGame.board[move1.coordinates.x][move1.coordinates.y].should.equal("X");
+        newGame.board[move1.coordinates.x][move1.coordinates.y].should.equal('X');
     });
 
     it('should be able to keep track of consecutive moves by a player', () => {
@@ -75,11 +75,11 @@ describe('Game - Play State', () => {
             i++;
         };
 
-        newGame.board[moves[0].coordinates.x][moves[0].coordinates.y] = "X";
+        newGame.board[moves[0].coordinates.x][moves[0].coordinates.y] = 'X';
         newGame.moves[0].player.should.deep.equal(humanPlayer);
-        newGame.board[moves[1].coordinates.x][moves[1].coordinates.y] = "O";
+        newGame.board[moves[1].coordinates.x][moves[1].coordinates.y] = 'O';
         newGame.moves[1].player.should.deep.equal(computerPlayer);
-        newGame.board[moves[2].coordinates.x][moves[2].coordinates.y] = "X";
+        newGame.board[moves[2].coordinates.x][moves[2].coordinates.y] = 'X';
         newGame.moves[2].player.should.deep.equal(humanPlayer);
     });
 
