@@ -94,12 +94,12 @@ describe('Game - Play State', () => {
         setMoveValue(humanPlayer, "X");
         setMoveValue(newGame.computerPlayer, "O");
 
-        makeMoves(movesForLeftToRightDiagonal());
+        makeMoves(movesForLeftToRightDiagonalWinner());
         newGame.winner.should.deep.equal(newGame.humanPlayer);
 
         newGame.moves = [];
         newGame.winner = null;
-        makeMoves(movesForRightToLeftDiagonal());
+        makeMoves(movesForRightToLeftDiagonalWinner());
 
         newGame.winner.should.deep.equal(newGame.computerPlayer);
     });
@@ -110,17 +110,17 @@ describe('Game - Play State', () => {
         setMoveValue(humanPlayer, "X");
         setMoveValue(newGame.computerPlayer, "O");
 
-        makeMoves(movesForTopRow());
+        makeMoves(movesForTopRowWinner());
         newGame.winner.should.deep.equal(newGame.humanPlayer);
 
         newGame.moves = [];
         newGame.winner = null;
-        makeMoves(movesForMiddleRow());
+        makeMoves(movesForMiddleRowWinner());
         newGame.winner.should.deep.equal(newGame.computerPlayer);
 
         newGame.moves = [];
         newGame.winner = null;
-        makeMoves(movesForBottomRow());
+        makeMoves(movesForBottomRowWinner());
         newGame.winner.should.deep.equal(newGame.humanPlayer);
     });
 });
@@ -147,7 +147,7 @@ function makeMoves(moves){
     }
 };
 
-function movesForLeftToRightDiagonal(){
+function movesForLeftToRightDiagonalWinner(){
     return [createMove(newGame.humanPlayer, { x:0, y:0 }),
             createMove(newGame.computerPlayer, { x:0, y:1 }),
             createMove(newGame.humanPlayer, { x:1, y:1 }),
@@ -155,7 +155,7 @@ function movesForLeftToRightDiagonal(){
             createMove(newGame.humanPlayer, { x:2, y:2 })];
 };
 
-function movesForRightToLeftDiagonal(){
+function movesForRightToLeftDiagonalWinner(){
     return [createMove(newGame.computerPlayer, { x:0, y:2 }),
             createMove(newGame.humanPlayer, { x:0, y:1 }),
             createMove(newGame.computerPlayer, { x:1, y:1 }),
@@ -163,7 +163,7 @@ function movesForRightToLeftDiagonal(){
             createMove(newGame.computerPlayer, { x:2, y:0 })];
 };
 
-function movesForTopRow(){
+function movesForTopRowWinner(){
     return [createMove(newGame.humanPlayer, { x:0, y:0 }),
             createMove(newGame.computerPlayer, { x:1, y:1 }),
             createMove(newGame.humanPlayer, { x:0, y:1 }),
@@ -171,7 +171,7 @@ function movesForTopRow(){
             createMove(newGame.humanPlayer, { x:0, y:2 })];
 };
 
-function movesForMiddleRow(){
+function movesForMiddleRowWinner(){
     return [createMove(newGame.computerPlayer, { x:1, y:0 }),
             createMove(newGame.humanPlayer, { x:0, y:0 }),
             createMove(newGame.computerPlayer, { x:1, y:1 }),
@@ -179,7 +179,7 @@ function movesForMiddleRow(){
             createMove(newGame.computerPlayer, { x:1, y:2 })];
 };
 
-function movesForBottomRow(){
+function movesForBottomRowWinner(){
     return [createMove(newGame.humanPlayer, { x:2, y:0 }),
             createMove(newGame.computerPlayer, { x:0, y:0 }),
             createMove(newGame.humanPlayer, { x:2, y:1 }),
