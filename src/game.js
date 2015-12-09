@@ -25,22 +25,21 @@ Game.prototype.makeMove = function(move){
 
 function checkForWinner(game){
 
-    if(game.moves && game.moves.length >= 5) {
+    if(!game.moves && game.moves.length >= 5) return;
 
-        checkForFirstRowWinner(game);
+    checkForFirstRowWinner(game);
 
-        if(!game.winner){
-            checkForSecondRowWinner(game);
-        };
+    if(!game.winner){
+        checkForSecondRowWinner(game);
+    };
 
-        if(!game.winner){
-            checkForThirdRowWinner(game);
-        };
+    if(!game.winner){
+        checkForThirdRowWinner(game);
+    };
 
-        if(!game.winner){
-            checkForDiagonalWinner(game);
-        };
-    }
+    if(!game.winner){
+        checkForDiagonalWinner(game);
+    };
 };
 
 
