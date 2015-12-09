@@ -20,6 +20,7 @@ Game.prototype.play = function(){
 Game.prototype.makeMove = function(move){
     this.board[move.coordinates.x][move.coordinates.y] = move.player.moveValue;
     this.moves.push(move);
+
     checkForWinner(this);
 };
 
@@ -41,7 +42,6 @@ function checkForWinner(game){
         checkForDiagonalWinner(game);
     };
 };
-
 
 
 function checkForFirstRowWinner(game){
@@ -120,13 +120,11 @@ function setWinnerIfFound(game, movesMade){
     var moveValues = [],
         players = [];
 
-    if(!movesMade) return;
+    if(!movesMade || movesMade.length < 3) return;
 
-    if(movesMade.length === 3){
-        for(let move of movesMade) {
-            players.push(move.player);
-            moveValues.push(move.moveValue);
-        };
+    for(let move of movesMade) {
+        players.push(move.player);
+        moveValues.push(move.moveValue);
     };
 
     if(moveValues.allValuesSame() && players.allValuesSame()){

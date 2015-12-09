@@ -112,6 +112,10 @@ describe('Game - Play State', () => {
         makeMoves(movesForBottomRowWinner());
         newGame.winner.should.deep.equal(humanPlayer);
     });
+
+    it('should ensure computer wins by row', () => {
+
+    });
 });
 
 
