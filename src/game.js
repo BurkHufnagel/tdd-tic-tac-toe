@@ -61,6 +61,7 @@ function checkForFirstRowWinner(game){
             });
         };
     };
+
     setWinnerIfFound(game, movesMade);
 }
 
@@ -113,7 +114,7 @@ function checkForDiagonalWinner(game){
                 moveValue: move.player.moveValue
             });
         };
-    }
+    };
 
     setWinnerIfFound(game, movesMade);
 };
@@ -129,7 +130,7 @@ function setWinnerIfFound(game, movesMade){
             players.push(move.player);
             moveValues.push(move.moveValue);
         };
-    }
+    };
 
     if(moveValues.allValuesSame() && players.allValuesSame()){
         game.winner = players[0];
@@ -137,11 +138,9 @@ function setWinnerIfFound(game, movesMade){
 }
 
 Array.prototype.allValuesSame = function(){
-    for(var i = 1; i < this.length; i++)
-    {
-        if(this[i] !== this[0])
-            return false;
-    }
+    for(var i = 1; i < this.length; i++) {
+        if(this[i] !== this[0]){ return false; }
+    };
 
     return true;
 };
