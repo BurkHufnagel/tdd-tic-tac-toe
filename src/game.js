@@ -25,8 +25,6 @@ Game.prototype.makeMove = function(move){
 
 function checkForWinner(game){
 
-    if(game.winner) return;
-
     if(game.moves && game.moves.length >= 5) {
 
         checkForFirstRowWinner(game);
