@@ -8,7 +8,7 @@ var Game = module.exports = function(){
     this.started = false;
     this.board = new board();
     this.humanPlayer = null;
-    this.computerPlayer = player.create('player 2 (computer)');
+    this.computerPlayer = player.create('computer');
     this.moves = [];
     this.winner = null;
 };
