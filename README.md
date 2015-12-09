@@ -5,7 +5,9 @@ Test Drive creation of a Tic-tac-toe game that cannot be beat
 
 a log of ES6 features used throughout
 
-- for iterator
-- let operator to limit variable scope to a block
+- for in iterator
+- for of iterator
+- let operator
+- arrow functions
 
 
