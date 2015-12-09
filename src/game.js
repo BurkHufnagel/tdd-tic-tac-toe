@@ -23,90 +23,28 @@ Game.prototype.makeMove = function(move){
 };
 
 function checkForWinner(game){
-    setWinnerForDiagonal(game);
-    setWinnerForRowOne(game);
-    setWinnerForRowTwo(game);
-    setWinnerForRowThree(game);
-};
 
-function setWinnerForDiagonal(game){
-    var movesMade = [],
-        players = [];
+    var winnerFound = game.winner === true;
 
     if(game.winner) return;
 
     if(game.moves && game.moves.length >= 5) {
+        checkForFirstRowWinner(game);
 
-        for (var move of game.moves) {
-            if (move.coordinates.x === 1 && (move.coordinates.y === 1) ||
-                move.coordinates.x === 0 && (move.coordinates.y === 0 || move.coordinates.y === 2) ||
-                move.coordinates.x === 2 && (move.coordinates.y === 2 || move.coordinates.y === 0)){
-                saveMove(movesMade, move, players);
-            }
+        if(!winnerFound){
+            checkForSecondRowWinner(game);
+        };
+
+        if(!winnerFound){
+            checkForThirdRowWinner(game);
+        };
+
+        if(!winnerFound){
+            checkForDiagonalWinner(game);
         }
 
-        setWinnerIfFound(game, movesMade, players);
-    }
-}
-
-function setWinnerForRowOne(game){
-
-    var movesMade = [],
-        players = [];
-
-    if(game.winner) return;
-
-    if(game.moves && game.moves.length >= 5) {
-        for (var move of game.moves) {
-                if (move.coordinates.x === 0 && (move.coordinates.y === 0 ||
-                                                 move.coordinates.y === 1 ||
-                                                 move.coordinates.y === 2)){
-                    saveMove(movesMade, move, players);
-                };
-        }
-
-        setWinnerIfFound(game, movesMade, players);
     }
 };
-
-function setWinnerForRowTwo(game){
-    var movesMade = [],
-        players = [];
-
-    if(game.winner) return;
-
-    if(game.moves && game.moves.length >= 5) {
-        for (var move of game.moves) {
-            if (move.coordinates.x === 1 && (move.coordinates.y === 0 ||
-                                            move.coordinates.y === 1 ||
-                                            move.coordinates.y === 2)){
-                saveMove(movesMade, move, players);
-            }
-        }
-
-        setWinnerIfFound(game, movesMade, players);
-    }
-};
-
-function setWinnerForRowThree(game){
-    var movesMade = [];
-    var players = [];
-
-    if(game.winner) return;
-
-    if(game.moves && game.moves.length >= 5) {
-        for (var move of game.moves) {
-            if (move.coordinates.x === 2 && (move.coordinates.y === 0 ||
-                                             move.coordinates.y === 1 ||
-                                             move.coordinates.y === 2)){
-                saveMove(movesMade, move, players);
-            }
-        }
-
-        setWinnerIfFound(game, movesMade, players);
-    }
-};
-
 
 function setWinnerIfFound(game, movesMade, players){
     if(movesMade.length === 3 &&
@@ -114,10 +52,70 @@ function setWinnerIfFound(game, movesMade, players){
        movesMade.allValuesSame() &&
        players.allValuesSame()){
 
-        game.winner = players[0];
+            game.winner = players[0];
+    }
+}
+
+function checkForFirstRowWinner(game){
+    var movesMade = [],
+        players = [];
+
+    for (var move of game.moves) {
+        if (move.coordinates.x === 0 && (move.coordinates.y === 0 ||
+            move.coordinates.y === 1 ||
+            move.coordinates.y === 2)){
+            saveMove(movesMade, move, players);
+        };
     }
 
+    setWinnerIfFound(game, movesMade, players);
 }
+
+function checkForSecondRowWinner(game){
+    var movesMade = [],
+        players = [];
+
+    for (var move of game.moves) {
+        if (move.coordinates.x === 1 && (move.coordinates.y === 0 ||
+            move.coordinates.y === 1 ||
+            move.coordinates.y === 2)){
+            saveMove(movesMade, move, players);
+        };
+    }
+
+    setWinnerIfFound(game, movesMade, players);
+}
+
+function checkForThirdRowWinner(game){
+    var movesMade = [],
+        players = [];
+
+    for (var move of game.moves) {
+        if (move.coordinates.x === 2 && (move.coordinates.y === 0 ||
+            move.coordinates.y === 1 ||
+            move.coordinates.y === 2)){
+            saveMove(movesMade, move, players);
+        };
+    }
+
+    setWinnerIfFound(game, movesMade, players);
+};
+
+function checkForDiagonalWinner(game){
+    var movesMade = [],
+        players = [];
+
+    for (var move of game.moves) {
+        if (move.coordinates.x === 1 && (move.coordinates.y === 1) ||
+            move.coordinates.x === 0 && (move.coordinates.y === 0 || move.coordinates.y === 2) ||
+            move.coordinates.x === 2 && (move.coordinates.y === 2 || move.coordinates.y === 0)){
+            saveMove(movesMade, move, players);
+        };
+    }
+
+    setWinnerIfFound(game, movesMade, players);
+};
+
 
 function saveMove(moves, move, players){
     moves.push(move.player.moveValue);
