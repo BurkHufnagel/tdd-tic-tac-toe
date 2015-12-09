@@ -1,7 +1,8 @@
 'use strict';
 
 var board = require('./board'),
-    player = require('./player');
+    player = require('./player'),
+    movesMade;
 
 var Game = module.exports = function(){
     this.started = false;
@@ -24,102 +25,115 @@ Game.prototype.makeMove = function(move){
 
 function checkForWinner(game){
 
-    var winnerFound = game.winner === true;
-
     if(game.winner) return;
 
     if(game.moves && game.moves.length >= 5) {
+
         checkForFirstRowWinner(game);
 
-        if(!winnerFound){
+        if(!game.winner){
             checkForSecondRowWinner(game);
         };
 
-        if(!winnerFound){
+        if(!game.winner){
             checkForThirdRowWinner(game);
         };
 
-        if(!winnerFound){
+        if(!game.winner){
             checkForDiagonalWinner(game);
-        }
-
+        };
     }
 };
 
-function setWinnerIfFound(game, movesMade, players){
-    if(movesMade.length === 3 &&
-       movesMade.allValuesSame() &&
-       movesMade.allValuesSame() &&
-       players.allValuesSame()){
 
-            game.winner = players[0];
-    }
-}
 
 function checkForFirstRowWinner(game){
-    var movesMade = [],
-        players = [];
+    movesMade = [];
 
     for (var move of game.moves) {
         if (move.coordinates.x === 0 && (move.coordinates.y === 0 ||
-            move.coordinates.y === 1 ||
-            move.coordinates.y === 2)){
-            saveMove(movesMade, move, players);
-        };
-    }
+                                         move.coordinates.y === 1 ||
+                                         move.coordinates.y === 2)){
 
-    setWinnerIfFound(game, movesMade, players);
+            movesMade.push({
+                player: move.player,
+                moveValue: move.player.moveValue
+            });
+        };
+    };
+    setWinnerIfFound(game, movesMade);
 }
 
 function checkForSecondRowWinner(game){
-    var movesMade = [],
-        players = [];
+    movesMade = [];
 
     for (var move of game.moves) {
         if (move.coordinates.x === 1 && (move.coordinates.y === 0 ||
-            move.coordinates.y === 1 ||
-            move.coordinates.y === 2)){
-            saveMove(movesMade, move, players);
-        };
-    }
+                                         move.coordinates.y === 1 ||
+                                         move.coordinates.y === 2)){
 
-    setWinnerIfFound(game, movesMade, players);
+            movesMade.push({
+                player: move.player,
+                moveValue: move.player.moveValue
+            });
+        };
+    };
+
+    setWinnerIfFound(game, movesMade);
 }
 
 function checkForThirdRowWinner(game){
-    var movesMade = [],
-        players = [];
+    movesMade = [];
 
     for (var move of game.moves) {
         if (move.coordinates.x === 2 && (move.coordinates.y === 0 ||
-            move.coordinates.y === 1 ||
-            move.coordinates.y === 2)){
-            saveMove(movesMade, move, players);
-        };
-    }
+                                         move.coordinates.y === 1 ||
+                                         move.coordinates.y === 2)){
 
-    setWinnerIfFound(game, movesMade, players);
+            movesMade.push({
+                player: move.player,
+                moveValue: move.player.moveValue
+            });
+        };
+    };
+
+    setWinnerIfFound(game, movesMade);
 };
 
 function checkForDiagonalWinner(game){
-    var movesMade = [],
-        players = [];
+    movesMade = [];
 
     for (var move of game.moves) {
         if (move.coordinates.x === 1 && (move.coordinates.y === 1) ||
             move.coordinates.x === 0 && (move.coordinates.y === 0 || move.coordinates.y === 2) ||
             move.coordinates.x === 2 && (move.coordinates.y === 2 || move.coordinates.y === 0)){
-            saveMove(movesMade, move, players);
+
+            movesMade.push({
+                player: move.player,
+                moveValue: move.player.moveValue
+            });
         };
     }
 
-    setWinnerIfFound(game, movesMade, players);
+    setWinnerIfFound(game, movesMade);
 };
 
+function setWinnerIfFound(game, movesMade){
+    var moveValues = [],
+        players = [];
 
-function saveMove(moves, move, players){
-    moves.push(move.player.moveValue);
-    players.push(move.player);
+    if(!movesMade) return;
+
+    if(movesMade.length === 3){
+        for(let move of movesMade) {
+            players.push(move.player);
+            moveValues.push(move.moveValue);
+        };
+    }
+
+    if(moveValues.allValuesSame() && players.allValuesSame()){
+        game.winner = players[0];
+    };
 }
 
 Array.prototype.allValuesSame = function(){
