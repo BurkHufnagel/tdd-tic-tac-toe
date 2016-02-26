@@ -10,4 +10,4 @@ a log of ES6 features used throughout
 - let operator
 - arrow functions
 
-
+(note this is not finished yet)
